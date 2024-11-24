@@ -50,6 +50,7 @@ public class Product : Aggregate<Guid>
         // TODO: if price has changed, raise ProductPticeChanged event
         if (Price != price)
         {
+            Price = price;
             AddDomainEvent(new ProductPriceChangedEvent(this));
         }
     }
