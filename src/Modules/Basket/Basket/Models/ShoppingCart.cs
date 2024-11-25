@@ -51,6 +51,16 @@ public class ShoppingCart
         }
     }
 
+    public void RemoveItem(Guid productId)
+    {
+        var existingItem = Items.FirstOrDefault(x => x.ProductId == productId);
+
+        if (existingItem != null)
+        {
+            _items.Remove(existingItem);
+        }
+    }
+
 
 
 }
