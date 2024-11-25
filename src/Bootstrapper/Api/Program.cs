@@ -1,8 +1,3 @@
-
-
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-
 var builder = WebApplication.CreateBuilder(args);
 var catalogAssembly = typeof(CatalogModule).Assembly;
 builder.Services
