@@ -5,7 +5,7 @@ public record UpdateProductCommand(
     )
     : ICommand<UpdateProductResult>;
 
-public record UpdateProductResult(bool Result);
+public record UpdateProductResult(bool IsSuccess);
 
 internal class UpdateProductHandler(CatalogDbContext dbContext)
     : ICommandHandler<UpdateProductCommand, UpdateProductResult>
