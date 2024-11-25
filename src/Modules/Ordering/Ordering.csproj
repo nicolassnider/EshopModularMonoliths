@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="OrderingModule.cs~RFba70a3.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Shared\Shared.csproj" />
   </ItemGroup>
 

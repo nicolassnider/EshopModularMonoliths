@@ -1,4 +1,9 @@
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host
+    .UseSerilog((context, config) =>
+    config.ReadFrom.Configuration(context.Configuration));
+
 var catalogAssembly = typeof(CatalogModule).Assembly;
 builder.Services
     .AddCarterWithAssemblies(catalogAssembly);
@@ -10,8 +15,17 @@ builder.Services
     .AddBasketModule(builder.Configuration)
     .AddOrderingModule(builder.Configuration);
 
+builder.Services
+    .AddExceptionHandler<CustomExceptionHandler>();
+
 var app = builder.Build();
-app.MapCarter();
+app
+    .MapCarter();
+app
+    .UseSerilogRequestLogging();
+app
+    .UseExceptionHandler(options => { });
+
 app
     .UseCatalogModule()
     .UseBasketModule()
