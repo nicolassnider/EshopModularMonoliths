@@ -1,4 +1,6 @@
-﻿global using Basket.Basket.Models;
+﻿global using Basket.Basket.Dtos;
+global using Basket.Basket.Exceptions;
+global using Basket.Basket.Models;
 global using Basket.Data;
 global using FluentValidation;
 global using Microsoft.AspNetCore.Builder;
@@ -7,7 +9,9 @@ global using Microsoft.EntityFrameworkCore.Diagnostics;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Shared.Behaviors;
+global using Shared.CQRS;
 global using Shared.Data.Interceptors;
 global using Shared.Data.Seed;
 global using Shared.DDD;
+global using Shared.Exceptions;
 global using System.Reflection;
