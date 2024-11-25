@@ -13,7 +13,8 @@ internal class GetProductsByCategoryHandler(CatalogDbContext dbContext)
     {
         var products = await dbContext.Products
             .AsNoTracking()
-            .Where(p => p.Category.Contains(query.Category))
+            .Where(p =>
+            p.Category.Any(c => c.ToLower().Contains(query.Category.ToLower())))
             .OrderBy(p => p.Name)
             .ToListAsync(cancellationToken);
 
