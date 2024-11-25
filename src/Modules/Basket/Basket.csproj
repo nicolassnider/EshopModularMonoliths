@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="BasketModule.cs~RFcbf9347.TMP" />
+    <None Remove="BasketModule.cs~RFce1d433.TMP" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,11 +17,8 @@
 
   <ItemGroup>
     <Folder Include="Basket\EventHandlers\" />
-    <Folder Include="Basket\Features\AddItemIntoBasket\" />
     <Folder Include="Basket\Features\CheckoutBasket\" />
-    <Folder Include="Basket\Features\GetBasket\" />
     <Folder Include="Basket\Features\UpdateItemPriceInBasket\" />
-    <Folder Include="Basket\Features\RemoveItemFromBasket\" />
   </ItemGroup>
 
 </Project>
