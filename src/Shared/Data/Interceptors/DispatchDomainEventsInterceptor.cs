@@ -1,8 +1,9 @@
-﻿
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Shared.DDD;
 
-using MediatR;
-
-namespace Catalog.Data.Interceptors;
+namespace Shared.Data.Interceptors;
 public class DispatchDomainEventsInterceptor(IMediator mediator)
     : SaveChangesInterceptor
 {
@@ -40,3 +41,4 @@ public class DispatchDomainEventsInterceptor(IMediator mediator)
 
     }
 }
+

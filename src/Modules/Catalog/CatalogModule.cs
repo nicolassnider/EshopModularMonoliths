@@ -1,9 +1,4 @@
-﻿using Catalog.Data.Interceptors;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Shared.Behaviors;
-
-namespace Catalog;
+﻿namespace Catalog;
 public static class CatalogModule
 {
     public static IServiceCollection AddCatalogModule(this IServiceCollection services,

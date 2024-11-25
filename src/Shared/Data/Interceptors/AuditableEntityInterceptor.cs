@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Shared.DDD;
 
-namespace Catalog.Data.Interceptors;
+namespace Shared.Data.Interceptors;
 public class AuditableEntityInterceptor : SaveChangesInterceptor
 {
     public override InterceptionResult<int> SavingChanges(
@@ -54,3 +56,4 @@ public static class Extensions
         (r.TargetEntry.State == EntityState.Added ||
          r.TargetEntry.State == EntityState.Modified));
 }
+
