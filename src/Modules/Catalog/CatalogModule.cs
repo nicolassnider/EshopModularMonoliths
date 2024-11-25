@@ -1,7 +1,7 @@
 ﻿using Catalog.Data.Interceptors;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Behaviors;
 
 namespace Catalog;
 public static class CatalogModule
@@ -13,7 +13,10 @@ public static class CatalogModule
         services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssembly(Assembly.GetEntryAssembly());
+            config.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
+
+        services.AddValidatorsFromAssembly(Assembly.GetEntryAssembly());
 
         // Data - Infrastructure Services
         var connectionString = configuration.GetConnectionString("Database");

@@ -5,6 +5,30 @@ public record UpdateProductCommand(
     )
     : ICommand<UpdateProductResult>;
 
+public class UpdateProductCommandValidator
+    : AbstractValidator<UpdateProductCommand>
+{
+    public UpdateProductCommandValidator()
+    {
+        RuleFor(x => x.Product.Name)
+            .NotEmpty()
+            .WithMessage("Name is required.");
+        RuleFor(x => x.Product.Category)
+            .NotEmpty()
+            .WithMessage("Category is required.");
+        RuleFor(x => x.Product.Description)
+            .NotEmpty()
+            .WithMessage("Description is required.");
+        RuleFor(x => x.Product.ImageFile)
+            .NotEmpty()
+            .WithMessage("ImageFile is required.");
+        RuleFor(x => x.Product.Price)
+            .GreaterThanOrEqualTo(0)
+            .NotEmpty()
+            .WithMessage("Price is required.");
+    }
+}
+
 public record UpdateProductResult(bool IsSuccess);
 
 internal class UpdateProductHandler(CatalogDbContext dbContext)
@@ -17,7 +41,7 @@ internal class UpdateProductHandler(CatalogDbContext dbContext)
 
         if (product is null)
         {
-            throw new Exception($"Product {command.Product.Id} not found");
+            throw new ProductNotFoundException(command.Product.Id);
         }
 
         UpdateProductWithNewValues(product, command.Product);
