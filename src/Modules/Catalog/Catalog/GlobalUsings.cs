@@ -1,7 +1,8 @@
 ﻿global using Carter;
+global using Catalog.Contracts.Products.Dtos;
+global using Catalog.Contracts.Products.Features.GetProductById;
 global using Catalog.Data;
 global using Catalog.Data.Seed;
-global using Catalog.Products.Dtos;
 global using Catalog.Products.Events;
 global using Catalog.Products.Exceptions;
 global using Catalog.Products.Models;
@@ -17,7 +18,7 @@ global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
-global using Shared.CQRS;
+global using Shared.Contracts.CQRS;
 global using Shared.Data;
 global using Shared.Data.Interceptors;
 global using Shared.Data.Seed;

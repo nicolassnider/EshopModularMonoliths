@@ -1,4 +1,4 @@
-﻿namespace Catalog.Products.Dtos;
+﻿namespace Catalog.Contracts.Products.Dtos;
 public record ProductDto(
     Guid Id,
     string Name,
@@ -6,3 +6,4 @@ public record ProductDto(
     string Description,
     string ImageFile,
     decimal Price);
+

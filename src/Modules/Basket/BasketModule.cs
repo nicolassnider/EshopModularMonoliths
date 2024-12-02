@@ -22,7 +22,7 @@ public static class BasketModule
 
         services.Decorate<IBasketRepository, CachedBasketRepository>();
 
-        // Data - Infrastructure Services
+        // 3. Data - Infrastructure services
         var connectionString = configuration.GetConnectionString("Database");
 
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
@@ -30,14 +30,9 @@ public static class BasketModule
 
         services.AddDbContext<BasketDbContext>((sp, options) =>
         {
-            options.AddInterceptors(
-                sp.GetServices<ISaveChangesInterceptor>()
-                );
+            options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
             options.UseNpgsql(connectionString);
-        }
-        );
-
-        services.AddScoped<IDataSeeder, BasketDataSeeder>();
+        });
 
         return services;
     }
