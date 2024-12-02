@@ -4,25 +4,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Catalog\**" />
-    <EmbeddedResource Remove="Catalog\**" />
-    <None Remove="Catalog\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="CatalogModule.cs~RF1c5285c.TMP" />
-    <None Remove="CatalogModule.cs~RFd0e5e5c.TMP" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
-  </ItemGroup>
+  </PropertyGroup>  
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Catalog.Contracts\Catalog.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
