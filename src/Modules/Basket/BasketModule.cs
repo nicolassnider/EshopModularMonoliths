@@ -1,20 +1,10 @@
-﻿using Shared.Data;
-
-namespace Basket;
+﻿namespace Basket;
 public static class BasketModule
 {
     public static IServiceCollection AddBasketModule(this IServiceCollection services,
         IConfiguration configuration)
     {
         // Application Use Case Services
-        services.AddMediatR(config =>
-        {
-            config.RegisterServicesFromAssembly(Assembly.GetEntryAssembly());
-            config.AddOpenBehavior(typeof(ValidationBehavior<,>));
-            config.AddOpenBehavior(typeof(LoggingBehavior<,>));
-        });
-
-        services.AddValidatorsFromAssembly(Assembly.GetEntryAssembly());
 
         // Data - Infrastructure Services
         var connectionString = configuration.GetConnectionString("Database");

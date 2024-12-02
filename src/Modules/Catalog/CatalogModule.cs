@@ -4,15 +4,7 @@ public static class CatalogModule
     public static IServiceCollection AddCatalogModule(this IServiceCollection services,
         IConfiguration configuration)
     {
-        // Application Use Case Services
-        services.AddMediatR(config =>
-        {
-            config.RegisterServicesFromAssembly(Assembly.GetEntryAssembly());
-            config.AddOpenBehavior(typeof(ValidationBehavior<,>));
-            config.AddOpenBehavior(typeof(LoggingBehavior<,>));
-        });
-
-        services.AddValidatorsFromAssembly(Assembly.GetEntryAssembly());
+        // Application Use Case Services        
 
         // Data - Infrastructure Services
         var connectionString = configuration.GetConnectionString("Database");

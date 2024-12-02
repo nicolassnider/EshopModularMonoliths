@@ -5,10 +5,15 @@ builder.Host
     config.ReadFrom.Configuration(context.Configuration));
 
 var catalogAssembly = typeof(CatalogModule).Assembly;
+var basketAssembly = typeof(BasketModule).Assembly;
+
 builder.Services
-    .AddCarterWithAssemblies(catalogAssembly);
+    .AddCarterWithAssemblies(catalogAssembly, basketAssembly);
+
 builder.Services
-    .AddMediatRWithAssemblies(catalogAssembly);
+    .AddMediatRWithAssemblies(catalogAssembly, basketAssembly);
+
+builder.Services.AddValidatorsFromAssemblies([catalogAssembly, basketAssembly]);
 
 builder.Services
     .AddCatalogModule(builder.Configuration)

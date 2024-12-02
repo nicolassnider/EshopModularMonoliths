@@ -34,6 +34,7 @@ internal class RemoveItemFromBasketHandler
             throw new ShoppingCartNotFoundException(command.UserName);
 
         shoppingCart.RemoveItem(command.ProductId);
+        await dbContext.SaveChangesAsync(cancellationToken);
 
         return new RemoveItemFromBasketResult(shoppingCart.Id);
     }
