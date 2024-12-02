@@ -17,7 +17,6 @@ global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
-global using Shared.Behaviors;
 global using Shared.CQRS;
 global using Shared.Data;
 global using Shared.Data.Interceptors;
