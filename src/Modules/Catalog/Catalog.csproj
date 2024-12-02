@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <None Remove="CatalogModule.cs~RF1c5285c.TMP" />
+    <None Remove="CatalogModule.cs~RFd0e5e5c.TMP" />
   </ItemGroup>
 
   <ItemGroup>
