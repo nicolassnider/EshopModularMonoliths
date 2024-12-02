@@ -21,20 +21,18 @@ public class RemoveItemFromBasketCommandValidator : AbstractValidator<RemoveItem
 }
 
 internal class RemoveItemFromBasketHandler
-    (BasketDbContext dbContext)
+    (IBasketRepository repository)
     : ICommandHandler<RemoveItemFromBasketCommand, RemoveItemFromBasketResult>
 {
     public async Task<RemoveItemFromBasketResult> Handle(RemoveItemFromBasketCommand command, CancellationToken cancellationToken)
     {
-        var shoppingCart = await dbContext.ShoppingCarts
-            .Include(x => x.Items)
-            .SingleOrDefaultAsync(x => x.UserName == command.UserName, cancellationToken);
-
-        if (shoppingCart is null)
-            throw new ShoppingCartNotFoundException(command.UserName);
+        var shoppingCart = await repository.GetBasket(
+            command.UserName,
+            asNoTracking: false,
+            cancellationToken: cancellationToken);
 
         shoppingCart.RemoveItem(command.ProductId);
-        await dbContext.SaveChangesAsync(cancellationToken);
+        await repository.SaveChangesAsync(cancellationToken);
 
         return new RemoveItemFromBasketResult(shoppingCart.Id);
     }

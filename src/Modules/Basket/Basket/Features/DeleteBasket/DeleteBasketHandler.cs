@@ -15,20 +15,12 @@ public class DeleteBasketCommandValidator : AbstractValidator<DeleteBasketComman
 }
 
 internal class DeleteBasketHandler
-    (BasketDbContext dbContext)
+    (IBasketRepository repository)
     : ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
 {
     public async Task<DeleteBasketResult> Handle(DeleteBasketCommand command, CancellationToken cancellationToken)
     {
-        var shoppingCart = await dbContext.ShoppingCarts
-            .SingleOrDefaultAsync(x => x.UserName == command.UserName, cancellationToken);
-
-        if (shoppingCart == null)
-        {
-            throw new ShoppingCartNotFoundException(command.UserName);
-        }
-        dbContext.ShoppingCarts.Remove(shoppingCart);
-        await dbContext.SaveChangesAsync(cancellationToken);
+        await repository.DeleteBasket(command.UserName, cancellationToken: cancellationToken);
 
         return new DeleteBasketResult(true);
     }
