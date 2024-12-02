@@ -34,7 +34,9 @@ internal class AddItemIntoBasketHandler
             command.ShoppingCartItem.Price,
             command.ShoppingCartItem.ProductName);
 
-        await repository.SaveChangesAsync(cancellationToken);
+        await repository.SaveChangesAsync(
+            userName: command.UserName,
+            cancellationToken: cancellationToken);
 
         return new AddItemIntoBasketResult(shoppingCart.Id);
     }
