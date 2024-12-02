@@ -1,8 +1,8 @@
 ﻿namespace Basket.Basket.Models;
-public class ShoppingCart
-    : Aggregate<Guid>
+public class ShoppingCart : Aggregate<Guid>
 {
-    public string UserName { get; set; } = default!;
+    public string UserName { get; private set; } = default!;
+
     private readonly List<ShoppingCartItem> _items = new();
     public IReadOnlyList<ShoppingCartItem> Items => _items.AsReadOnly();
     public decimal TotalPrice => Items.Sum(x => x.Price * x.Quantity);
@@ -18,15 +18,9 @@ public class ShoppingCart
         };
 
         return shoppingCart;
-
     }
 
-    public void AddItem(
-        Guid productId,
-        int quantity,
-        string color,
-        decimal price,
-        string productName)
+    public void AddItem(Guid productId, int quantity, string color, decimal price, string productName)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
@@ -39,14 +33,7 @@ public class ShoppingCart
         }
         else
         {
-            var newItem = new ShoppingCartItem(
-                Id,
-                productId,
-                quantity,
-                color,
-                price,
-                productName
-                );
+            var newItem = new ShoppingCartItem(Id, productId, quantity, color, price, productName);
             _items.Add(newItem);
         }
     }
@@ -60,7 +47,4 @@ public class ShoppingCart
             _items.Remove(existingItem);
         }
     }
-
-
-
 }

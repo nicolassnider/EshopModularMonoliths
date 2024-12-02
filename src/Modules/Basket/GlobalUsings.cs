@@ -3,6 +3,7 @@ global using Basket.Basket.Exceptions;
 global using Basket.Basket.Features.GetBasket;
 global using Basket.Basket.Models;
 global using Basket.Data;
+global using Basket.Data.Repository;
 global using Carter;
 global using FluentValidation;
 global using Mapster;
@@ -23,4 +24,3 @@ global using Shared.Data.Seed;
 global using Shared.DDD;
 global using Shared.Exceptions;
 global using System.Reflection;
-
