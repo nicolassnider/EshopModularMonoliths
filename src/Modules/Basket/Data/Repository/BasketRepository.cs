@@ -33,7 +33,7 @@ public class BasketRepository(BasketDbContext dbContext)
         return true;
     }
 
-    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public Task<int> SaveChangesAsync(string? userName = null, CancellationToken cancellationToken = default)
     {
         return dbContext.SaveChangesAsync(cancellationToken);
     }

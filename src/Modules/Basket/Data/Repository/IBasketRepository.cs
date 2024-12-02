@@ -15,5 +15,6 @@ public interface IBasketRepository
         CancellationToken cancellationToken = default);
 
     Task<int> SaveChangesAsync(
+        string? userName = null,
         CancellationToken cancellationToken = default);
 }
