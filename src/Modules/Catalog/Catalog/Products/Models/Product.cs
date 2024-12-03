@@ -31,23 +31,18 @@ public class Product : Aggregate<Guid>
         return product;
     }
 
-    public void Update(
-        string name,
-        List<string> category,
-        string description,
-        string imageFile,
-        decimal price)
+    public void Update(string name, List<string> category, string description, string imageFile, decimal price)
     {
         ArgumentException.ThrowIfNullOrEmpty(name);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
 
+        // Update Product entity fields
         Name = name;
         Category = category;
         Description = description;
         ImageFile = imageFile;
-        Price = price;
 
-        // TODO: if price has changed, raise ProductPticeChanged event
+        // if price has changed, raise ProductPriceChanged domain event
         if (Price != price)
         {
             Price = price;
