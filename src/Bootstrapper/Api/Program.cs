@@ -20,7 +20,7 @@ builder.Services
     });
 
 builder.Services
-    .AddMassTransitWithAssemblies(catalogAssembly, basketAssembly);
+    .AddMassTransitWithAssemblies(builder.Configuration, catalogAssembly, basketAssembly);
 
 
 builder.Services
