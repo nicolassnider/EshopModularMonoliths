@@ -1,3 +1,5 @@
+using Keycloak.AuthServices.Authentication;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host
@@ -22,6 +24,8 @@ builder.Services
 builder.Services
     .AddMassTransitWithAssemblies(builder.Configuration, catalogAssembly, basketAssembly);
 
+builder.Services.AddKeycloakWebApiAuthentication(builder.Configuration);
+builder.Services.AddAuthorization();
 
 builder.Services
     .AddCatalogModule(builder.Configuration)
@@ -38,6 +42,11 @@ app
     .UseSerilogRequestLogging();
 app
     .UseExceptionHandler(options => { });
+
+app
+    .UseAuthentication();
+app
+    .UseAuthorization();
 
 app
     .UseCatalogModule()
