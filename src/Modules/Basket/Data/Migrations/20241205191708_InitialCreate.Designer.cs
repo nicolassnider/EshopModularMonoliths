@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Basket.Data.Migrations
 {
     [DbContext(typeof(BasketDbContext))]
-    [Migration("20241125193545_InitialCreate")]
+    [Migration("20241205191708_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

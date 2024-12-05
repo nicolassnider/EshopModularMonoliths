@@ -12,12 +12,16 @@ namespace Catalog.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "catalog");
+
             migrationBuilder.CreateTable(
                 name: "Products",
+                schema: "catalog",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Category = table.Column<List<string>>(type: "text[]", nullable: false),
                     Description = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     ImageFile = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
@@ -37,7 +41,8 @@ namespace Catalog.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Products",
+                schema: "catalog");
         }
     }
 }
