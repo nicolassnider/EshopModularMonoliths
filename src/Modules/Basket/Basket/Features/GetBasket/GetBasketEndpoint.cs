@@ -16,6 +16,8 @@ public class GetBasketEndpoint
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .ProducesProblem(StatusCodes.Status404NotFound)
             .WithSummary("Get product by Id")
-            .WithDescription("Get product by Id");
+            .WithDescription("Get product by Id")
+            .RequireAuthorization();
+
     }
 }

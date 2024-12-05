@@ -25,6 +25,7 @@ public class RemoveItemFromBasketEndpoint
             .Produces<RemoveItemFromBasketCommand>(StatusCodes.Status200OK)
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Removes an item from the basket")
-            .WithDescription("Removes an item from the basket");
+            .WithDescription("Removes an item from the basket")
+            .RequireAuthorization();
     }
 }

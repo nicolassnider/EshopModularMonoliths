@@ -30,6 +30,7 @@ public class AddItemIntoBasketEndpoint
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .ProducesProblem(StatusCodes.Status404NotFound)
             .WithSummary("Add Item into Basket")
-            .WithDescription("Add Item into Basket");
+            .WithDescription("Add Item into Basket")
+            .RequireAuthorization();
     }
 }
