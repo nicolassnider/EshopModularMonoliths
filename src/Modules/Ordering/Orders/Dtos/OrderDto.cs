@@ -2,8 +2,8 @@
 public record OrderDto(
     Guid Id,
     Guid CustomerId,
-    string orderName,
-    AddressDto ShhippingAddress,
+    string OrderName,
+    AddressDto ShippingAddress,
     AddressDto BillingAddress,
     PaymentDto Payment,
     List<OrderItemDto> Items

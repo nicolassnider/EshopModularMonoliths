@@ -4,4 +4,4 @@ public record PaymentDto(
     string CardNumber,
     string Expiration,
     string Cvv,
-    decimal TotalPrice);
+    int PaymentMethod);

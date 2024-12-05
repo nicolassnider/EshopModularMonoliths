@@ -1,8 +1,10 @@
 ﻿namespace Ordering.Orders.Dtos;
 public record class AddressDto
     (
-    string Street,
-    string City,
-    string State,
+    string FirstName,
+    string LastName,
+    string EmailAddress,
+    string AddressLine,
     string Country,
+    string State,
     string ZipCode);
