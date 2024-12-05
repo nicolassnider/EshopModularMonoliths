@@ -1,5 +1,3 @@
-using Keycloak.AuthServices.Authentication;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host
@@ -42,7 +40,6 @@ app
     .UseSerilogRequestLogging();
 app
     .UseExceptionHandler(options => { });
-
 app
     .UseAuthentication();
 app
