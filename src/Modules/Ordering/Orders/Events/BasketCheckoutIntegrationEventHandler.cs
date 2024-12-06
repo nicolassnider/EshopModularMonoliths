@@ -1,8 +1,4 @@
-﻿using MassTransit;
-using Ordering.Orders.Features.CreateOrder;
-using Shared.Messaging.Events;
-
-namespace Ordering.Orders.Events;
+﻿namespace Ordering.Orders.Events;
 public class BasketCheckoutIntegrationEventHandler(
     ISender sender,
     ILogger<BasketCheckoutIntegrationEventHandler> logger)
