@@ -21,7 +21,8 @@ builder.Services.AddStackExchangeRedisCache(options =>
 builder.Services.AddMassTransitWithAssemblies(
     builder.Configuration,
     catalogAssembly,
-    basketAssembly
+    basketAssembly,
+    orderingAssembly
 );
 
 builder.Services.AddKeycloakWebApiAuthentication(builder.Configuration);
