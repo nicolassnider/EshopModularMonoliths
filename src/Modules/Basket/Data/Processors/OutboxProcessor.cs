@@ -9,10 +9,12 @@ public class OutboxProcessor
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        logger.LogInformation("Processing outbox messages");
         while (!stoppingToken.IsCancellationRequested)
         {
             try
             {
+
                 using var scope = serviceProvider.CreateScope();
                 var dbContext = scope.ServiceProvider
                     .GetRequiredService<BasketDbContext>();
@@ -41,7 +43,7 @@ public class OutboxProcessor
                     await bus.Publish(eventMessage, stoppingToken);
 
                     message.ProcessedOn = DateTime.UtcNow;
-                    logger.LogInformation("Successfully processed outbox message with Id: {Id}", message.Id)
+                    logger.LogInformation("Successfully processed outbox message with Id: {Id}", message.Id);
                 }
 
                 await dbContext.SaveChangesAsync(stoppingToken);
