@@ -19,6 +19,8 @@ global using Microsoft.EntityFrameworkCore.Diagnostics;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.Extensions.Logging;
 global using Shared.Contracts.CQRS;
 global using Shared.Data;
 global using Shared.Data.Interceptors;
@@ -28,3 +30,5 @@ global using Shared.Exceptions;
 global using Shared.Messaging.Events;
 global using System.Reflection;
 global using System.Security.Claims;
+global using System.Text.Json;
+
