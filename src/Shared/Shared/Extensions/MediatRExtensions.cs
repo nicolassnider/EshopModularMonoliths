@@ -1,9 +1,4 @@
-﻿using System.Reflection;
-using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
-using Shared.Behaviors;
-
-namespace Shared.Extensions;
+﻿namespace Shared.Extensions;
 
 public static class MediatRExtensions
 {

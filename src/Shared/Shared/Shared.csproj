@@ -11,6 +11,10 @@
     <EmbeddedResource Remove="Shared\**" />
     <None Remove="Shared\**" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="DDD\IEntity.cs~RFdba687.TMP" />
+  </ItemGroup>
 	
 	<ItemGroup>
     <PackageReference Include="Carter" Version="8.2.1" />

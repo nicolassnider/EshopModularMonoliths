@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using MediatR;
-using Microsoft.Extensions.Logging;
-
-namespace Shared.Behaviors;
+﻿namespace Shared.Behaviors;
 
 public class LoggingBehavior<TRequest, TResponse>(
     ILogger<LoggingBehavior<TRequest, TResponse>> logger

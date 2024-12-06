@@ -1,8 +1,4 @@
-﻿using FluentValidation;
-using MediatR;
-using Shared.Contracts.CQRS;
-
-namespace Shared.Behaviors;
+﻿namespace Shared.Behaviors;
 
 public class ValidationBehavior<Trequest, Tresponse>(IEnumerable<IValidator<Trequest>> validators)
     : IPipelineBehavior<Trequest, Tresponse>

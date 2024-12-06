@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Shared.Data.Seed;
-
-namespace Shared.Data;
+﻿namespace Shared.Data;
 
 public static class Extensions
 {
