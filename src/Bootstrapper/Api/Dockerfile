@@ -1,5 +1,3 @@
-# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
 # This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
@@ -7,20 +5,26 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Bootstrapper/Api/Api.csproj", "Bootstrapper/Api/"]
 COPY ["Modules/Basket/Basket.csproj", "Modules/Basket/"]
-COPY ["Shared/Shared.csproj", "Shared/"]
-COPY ["Modules/Catalog/Catalog.csproj", "Modules/Catalog/"]
+COPY ["Shared/Shared.Messaging/Shared.Messaging.csproj", "Shared/Shared.Messaging/"]
+COPY ["Shared/Shared/Shared.csproj", "Shared/Shared/"]
+COPY ["Shared/Shared.Contracts/Shared.Contracts.csproj", "Shared/Shared.Contracts/"]
+COPY ["Modules/Catalog/Catalog.Contracts/Catalog.Contracts.csproj", "Modules/Catalog/Catalog.Contracts/"]
+COPY ["Modules/Catalog/Catalog/Catalog.csproj", "Modules/Catalog/Catalog/"]
 COPY ["Modules/Ordering/Ordering.csproj", "Modules/Ordering/"]
 RUN dotnet restore "./Bootstrapper/Api/Api.csproj"
 COPY . .
 WORKDIR "/src/Bootstrapper/Api"
 RUN dotnet build "./Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# Generate developer certificate
+RUN mkdir -p /app/https
+RUN dotnet dev-certs https --trust --export-path /app/https/Certificate.pfx
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
@@ -31,4 +35,7 @@ RUN dotnet publish "./Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:Use
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY --from=build /app/https/Certificate.pfx /app/https/Certificate.pfx
+ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/app/https/Certificate.pfx
+ENV ASPNETCORE_Kestrel__Certificates__Default__Password=<password>
 ENTRYPOINT ["dotnet", "Api.dll"]
