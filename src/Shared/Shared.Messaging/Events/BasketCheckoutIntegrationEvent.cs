@@ -1,6 +1,6 @@
 ﻿namespace Shared.Messaging.Events;
-public record BasketCheckoutIntegrationEvent
-    : IntegrationEvent
+
+public record BasketCheckoutIntegrationEvent : IntegrationEvent
 {
     public string UserName { get; set; } = default!;
     public Guid CustomerId { get; set; } = default!;

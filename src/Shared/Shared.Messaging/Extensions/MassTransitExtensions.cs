@@ -1,16 +1,17 @@
-﻿using MassTransit;
+﻿using System.Reflection;
+using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace Shared.Messaging.Extensions;
+
 public static class MassTransitExtensions
 {
-    public static IServiceCollection AddMassTransitWithAssemblies
-        (
+    public static IServiceCollection AddMassTransitWithAssemblies(
         this IServiceCollection services,
         IConfiguration configuration,
-        params Assembly[] assemblies)
+        params Assembly[] assemblies
+    )
     {
         //implement  MassTransit config
         services.AddMassTransit(config =>
@@ -29,15 +30,20 @@ public static class MassTransitExtensions
                 configurator.ConfigureEndpoints(context);
             });*/
 
-            config.UsingRabbitMq((context, configurator) =>
-            {
-                configurator.Host(new Uri(configuration["MessageBroker:Host"]!), host =>
+            config.UsingRabbitMq(
+                (context, configurator) =>
                 {
-                    host.Username(configuration["MessageBroker:Username"]!);
-                    host.Password(configuration["MessageBroker:Password"]!);
-                });
-                configurator.ConfigureEndpoints(context);
-            });
+                    configurator.Host(
+                        new Uri(configuration["MessageBroker:Host"]!),
+                        host =>
+                        {
+                            host.Username(configuration["MessageBroker:Username"]!);
+                            host.Password(configuration["MessageBroker:Password"]!);
+                        }
+                    );
+                    configurator.ConfigureEndpoints(context);
+                }
+            );
         });
 
         return services;
