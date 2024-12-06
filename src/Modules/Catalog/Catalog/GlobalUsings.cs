@@ -26,5 +26,5 @@ global using Shared.Data.Seed;
 global using Shared.DDD;
 global using Shared.Exceptions;
 global using Shared.Messaging.Events;
-global using System.Reflection;
 global using Shared.Pagination;
+global using System.Reflection;
