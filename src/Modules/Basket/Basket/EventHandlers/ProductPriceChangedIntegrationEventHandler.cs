@@ -1,7 +1,4 @@
-﻿using Basket.Basket.Features.UpdateItemPriceInBasket;
-using Microsoft.Extensions.Logging;
-
-namespace Basket.Basket.EventHandlers;
+﻿namespace Basket.Basket.EventHandlers;
 
 public class ProductPriceChangedIntegrationEventHandler(
     ISender sender,
