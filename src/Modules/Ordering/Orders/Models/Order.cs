@@ -1,4 +1,5 @@
 ﻿namespace Ordering.Orders.Models;
+
 public class Order : Aggregate<Guid>
 {
     public readonly List<OrderItem> _items = new();
@@ -24,7 +25,7 @@ public class Order : Aggregate<Guid>
         Address shippingAddress,
         Address billingAddress,
         Payment payment
-        )
+    )
     {
         var order = new Order
         {
@@ -41,10 +42,7 @@ public class Order : Aggregate<Guid>
         return order;
     }
 
-    public void Add(
-        Guid productId,
-        int quantity,
-        decimal price)
+    public void Add(Guid productId, int quantity, decimal price)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
@@ -70,5 +68,4 @@ public class Order : Aggregate<Guid>
             _items.Remove(orderItem);
         }
     }
-
 }

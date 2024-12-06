@@ -1,4 +1,5 @@
 ﻿namespace Basket.Basket.Dtos;
+
 public record ShoppingCartItemDto(
     Guid Id,
     Guid ShoppingCartId,
@@ -7,4 +8,4 @@ public record ShoppingCartItemDto(
     string Color,
     decimal Price,
     string ProductName
-    );
+);

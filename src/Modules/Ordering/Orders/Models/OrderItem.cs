@@ -1,11 +1,8 @@
 ﻿namespace Ordering.Orders.Models;
+
 public class OrderItem : Entity<Guid>
 {
-    internal OrderItem(
-        Guid orderId,
-        Guid productId,
-        int quantity,
-        decimal price)
+    internal OrderItem(Guid orderId, Guid productId, int quantity, decimal price)
     {
         OrderId = orderId;
         ProductId = productId;

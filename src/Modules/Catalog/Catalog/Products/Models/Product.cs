@@ -1,4 +1,5 @@
 ﻿namespace Catalog.Products.Models;
+
 public class Product : Aggregate<Guid>
 {
     public string Name { get; private set; }
@@ -12,7 +13,9 @@ public class Product : Aggregate<Guid>
         string name,
         List<string> category,
         string description,
-        string imageFile, decimal price)
+        string imageFile,
+        decimal price
+    )
     {
         ArgumentException.ThrowIfNullOrEmpty(name);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
@@ -31,7 +34,13 @@ public class Product : Aggregate<Guid>
         return product;
     }
 
-    public void Update(string name, List<string> category, string description, string imageFile, decimal price)
+    public void Update(
+        string name,
+        List<string> category,
+        string description,
+        string imageFile,
+        decimal price
+    )
     {
         ArgumentException.ThrowIfNullOrEmpty(name);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);

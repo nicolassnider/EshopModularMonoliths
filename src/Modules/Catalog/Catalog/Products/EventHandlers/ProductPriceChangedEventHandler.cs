@@ -1,10 +1,12 @@
 ﻿namespace Catalog.Products.EventHandlers;
-public class ProductPriceChangedEventHandler(
-    IBus bus,
-    ILogger<ProductCreatedEventHandler> logger)
+
+public class ProductPriceChangedEventHandler(IBus bus, ILogger<ProductCreatedEventHandler> logger)
     : INotificationHandler<ProductPriceChangedEvent>
 {
-    public async Task Handle(ProductPriceChangedEvent notification, CancellationToken cancellationToken)
+    public async Task Handle(
+        ProductPriceChangedEvent notification,
+        CancellationToken cancellationToken
+    )
     {
         logger.LogInformation("Domain Event handled: {DomainEvent}", notification.GetType().Name);
 
