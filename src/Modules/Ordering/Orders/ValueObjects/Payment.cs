@@ -1,4 +1,5 @@
 ﻿namespace Ordering.Orders.ValueObjects;
+
 public record Payment
 {
     public string? CardName { get; } = default!;
@@ -14,7 +15,8 @@ public record Payment
         string cardNumber,
         string expiration,
         string cvv,
-        int paymentMethod)
+        int paymentMethod
+    )
     {
         CardName = cardName;
         CardNumber = cardNumber;
@@ -28,7 +30,8 @@ public record Payment
         string cardNumber,
         string expiration,
         string cvv,
-        int paymentMethod)
+        int paymentMethod
+    )
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(cardName);
         ArgumentException.ThrowIfNullOrWhiteSpace(cardNumber);

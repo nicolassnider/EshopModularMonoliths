@@ -1,4 +1,5 @@
 ﻿namespace Ordering.Data;
+
 public class OrderingDbContext : DbContext
 {
     public OrderingDbContext(DbContextOptions<OrderingDbContext> options)

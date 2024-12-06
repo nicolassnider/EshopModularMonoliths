@@ -1,4 +1,5 @@
 ﻿namespace Ordering.Orders.ValueObjects;
+
 public record Address
 {
     public string FirstName { get; } = default!;
@@ -18,7 +19,8 @@ public record Address
         string addressLine,
         string country,
         string state,
-        string zipCode)
+        string zipCode
+    )
     {
         FirstName = firstName;
         LastName = lastName;
@@ -36,20 +38,12 @@ public record Address
         string addressLine,
         string country,
         string state,
-        string zipCode)
+        string zipCode
+    )
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(emailAddress);
         ArgumentException.ThrowIfNullOrWhiteSpace(addressLine);
 
-        return new Address(
-            firstName,
-            lastName,
-            emailAddress,
-            addressLine,
-            country,
-            state,
-            zipCode);
+        return new Address(firstName, lastName, emailAddress, addressLine, country, state, zipCode);
     }
-
 }
-

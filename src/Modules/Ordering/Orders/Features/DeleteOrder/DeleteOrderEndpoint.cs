@@ -1,23 +1,24 @@
 ﻿namespace Ordering.Orders.Features.DeleteOrder;
+
 public record DeleteOrderRequest(Guid Id);
+
 public record DeleteOrderResponse(bool IsSuccess);
 
-public class DeleteOrderEndpoint
-    : ICarterModule
+public class DeleteOrderEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapDelete(
-            pattern: "/orders/{id}",
-            handler:
-            async (Guid id, ISender sender) =>
-            {
-                var result = await sender.Send(new DeleteOrderCommand(id));
+                pattern: "/orders/{id}",
+                handler: async (Guid id, ISender sender) =>
+                {
+                    var result = await sender.Send(new DeleteOrderCommand(id));
 
-                var response = result.Adapt<DeleteOrderResponse>();
+                    var response = result.Adapt<DeleteOrderResponse>();
 
-                return Results.Ok(response);
-            })
+                    return Results.Ok(response);
+                }
+            )
             .WithName("DeleteOrder")
             .Produces<DeleteOrderResponse>(StatusCodes.Status200OK)
             .ProducesProblem(StatusCodes.Status400BadRequest)

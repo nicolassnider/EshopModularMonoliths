@@ -1,4 +1,5 @@
 ﻿namespace Ordering.Data.Configurations;
+
 public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
 {
     public void Configure(EntityTypeBuilder<OrderItem> builder)

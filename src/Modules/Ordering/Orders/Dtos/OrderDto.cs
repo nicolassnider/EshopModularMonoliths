@@ -1,4 +1,5 @@
 ﻿namespace Ordering.Orders.Dtos;
+
 public record OrderDto(
     Guid Id,
     Guid CustomerId,
@@ -7,4 +8,4 @@ public record OrderDto(
     AddressDto BillingAddress,
     PaymentDto Payment,
     List<OrderItemDto> Items
-    );
+);

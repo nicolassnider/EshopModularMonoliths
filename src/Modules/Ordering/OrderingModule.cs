@@ -1,13 +1,16 @@
 ﻿namespace Ordering;
+
 public static class OrderingModule
 {
-    public static IServiceCollection AddOrderingModule(this IServiceCollection services,
-        IConfiguration configuration)
+    public static IServiceCollection AddOrderingModule(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
     {
         // Add services to the container.
         // 1. Api Endpoint services
 
-        // 2. Application Use Case services        
+        // 2. Application Use Case services
 
         // 3. Data - Infrastructure services
         var connectionString = configuration.GetConnectionString("Database");
@@ -15,11 +18,13 @@ public static class OrderingModule
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
-        services.AddDbContext<OrderingDbContext>((sp, options) =>
-        {
-            options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-            options.UseNpgsql(connectionString);
-        });
+        services.AddDbContext<OrderingDbContext>(
+            (sp, options) =>
+            {
+                options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
+                options.UseNpgsql(connectionString);
+            }
+        );
 
         return services;
     }
