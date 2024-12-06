@@ -1,5 +1,5 @@
-﻿
-namespace Shared.DDD;
+﻿namespace Shared.DDD;
+
 public abstract class Aggregate<TId> : Entity<TId>, IAggregate<TId>
 {
     private readonly List<IDomainEvent> _domainEvents = new();

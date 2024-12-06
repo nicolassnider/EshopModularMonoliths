@@ -1,23 +1,27 @@
-﻿using MediatR;
+﻿using System.Diagnostics;
+using MediatR;
 using Microsoft.Extensions.Logging;
-using System.Diagnostics;
 
 namespace Shared.Behaviors;
-public class LoggingBehavior<TRequest, TResponse>
-    (ILogger<LoggingBehavior<TRequest, TResponse>> logger)
-    : IPipelineBehavior<TRequest, TResponse>
+
+public class LoggingBehavior<TRequest, TResponse>(
+    ILogger<LoggingBehavior<TRequest, TResponse>> logger
+) : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull, IRequest<TResponse>
     where TResponse : notnull
 {
     public Task<TResponse> Handle(
         TRequest request,
         RequestHandlerDelegate<TResponse> next,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken
+    )
     {
-        logger.LogInformation("[START] Handle request={Request} - Response={Response} - RequestData={RequestData}",
+        logger.LogInformation(
+            "[START] Handle request={Request} - Response={Response} - RequestData={RequestData}",
             typeof(TRequest).Name,
             typeof(TResponse).Name,
-            request);
+            request
+        );
 
         var timer = new Stopwatch();
 
@@ -31,16 +35,19 @@ public class LoggingBehavior<TRequest, TResponse>
 
         if (timeTaken.Seconds > 3)
         {
-            logger.LogWarning("[PERFORMACE] The request {Request} took {TimeTaken} seconds",
-                typeof(TRequest).Name, timeTaken.Seconds);
+            logger.LogWarning(
+                "[PERFORMACE] The request {Request} took {TimeTaken} seconds",
+                typeof(TRequest).Name,
+                timeTaken.Seconds
+            );
         }
 
-        logger.LogInformation("[END] Handled request={Request} - Response={Response}",
+        logger.LogInformation(
+            "[END] Handled request={Request} - Response={Response}",
             typeof(TRequest).Name,
-            typeof(TResponse).Name);
+            typeof(TResponse).Name
+        );
 
         return response;
-
-
     }
 }
