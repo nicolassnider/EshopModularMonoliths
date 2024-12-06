@@ -1,9 +1,4 @@
-﻿using System.Reflection;
-using MassTransit;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Shared.Messaging.Extensions;
+﻿namespace Shared.Messaging.Extensions;
 
 public static class MassTransitExtensions
 {
