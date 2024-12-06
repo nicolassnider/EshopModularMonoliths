@@ -7,7 +7,7 @@ services:
 
     seq:
         image: datalust/seq:latest
-       
+
     messagebus:
         image: rabbitmq:management
 
