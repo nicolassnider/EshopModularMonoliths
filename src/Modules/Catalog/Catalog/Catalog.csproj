@@ -4,7 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-  </PropertyGroup>  
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CatalogModule.cs~RF1c5285c.TMP" />
+    <None Remove="CatalogModule.cs~RFd0e5e5c.TMP" />
+  </ItemGroup>  
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Shared.Messaging\Shared.Messaging.csproj" />

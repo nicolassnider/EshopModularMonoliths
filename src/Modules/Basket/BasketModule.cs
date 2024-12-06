@@ -4,22 +4,11 @@ public static class BasketModule
     public static IServiceCollection AddBasketModule(this IServiceCollection services,
         IConfiguration configuration)
     {
-        // Application Use Case Services
+        // Add services to the container.
+        // 1. Api Endpoint services
 
-
+        // 2. Application Use Case services
         services.AddScoped<IBasketRepository, BasketRepository>();
-
-        /*
-         * The key insight here is that we're using the service provider to resolve dependencies 
-         * for the CachedBasketRepository instance. By doing so, we can decouple the CachedBasketRepository 
-         * from the specific implementation of BasketRepository and IDistributedCache.
-         */
-        /* services.AddScoped<IBasketRepository>(provider =>
-        {
-            var basketRepository = provider.GetRequiredService<BasketRepository>();
-            return new CachedBasketRepository(basketRepository, provider.GetRequiredService<IDistributedCache>());
-        });*/
-
         services.Decorate<IBasketRepository, CachedBasketRepository>();
 
         // 3. Data - Infrastructure services
@@ -39,7 +28,14 @@ public static class BasketModule
 
     public static IApplicationBuilder UseBasketModule(this IApplicationBuilder app)
     {
+        // Configure the HTTP request pipeline.
+        // 1. Use Api Endpoint services
+
+        // 2. Use Application Use Case services
+
+        // 3. Use Data - Infrastructure services
         app.UseMigration<BasketDbContext>();
+
         return app;
     }
 }
