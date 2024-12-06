@@ -1,7 +1,4 @@
-﻿
-using System.Text.Json;
-
-namespace Basket.Basket.Features.CheckoutBasket;
+﻿namespace Basket.Basket.Features.CheckoutBasket;
 public record CheckoutBasketCommand(BasketCheckoutDto BasketCheckout)
     : IRequest<CheckoutBasketResult>;
 
