@@ -28,6 +28,8 @@ public static class BasketModule
             }
         );
 
+        services.AddHostedService<OutboxProcessor>();
+
         return services;
     }
 

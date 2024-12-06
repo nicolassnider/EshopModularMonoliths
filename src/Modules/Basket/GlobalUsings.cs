@@ -1,8 +1,10 @@
 ﻿global using Basket.Basket.Dtos;
 global using Basket.Basket.Exceptions;
 global using Basket.Basket.Features.GetBasket;
+global using Basket.Basket.Features.UpdateItemPriceInBasket;
 global using Basket.Basket.Models;
 global using Basket.Data;
+global using Basket.Data.Processors;
 global using Basket.Data.Repository;
 global using Carter;
 global using Catalog.Contracts.Products.Features.GetProductById;
@@ -31,6 +33,4 @@ global using Shared.Messaging.Events;
 global using System.Reflection;
 global using System.Security.Claims;
 global using System.Text.Json;
-global using Basket.Basket.Features.UpdateItemPriceInBasket;
-global using Microsoft.Extensions.Logging;
 global using System.Text.Json.Serialization;
