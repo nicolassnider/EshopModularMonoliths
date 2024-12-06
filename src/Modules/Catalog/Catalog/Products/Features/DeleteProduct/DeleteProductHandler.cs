@@ -1,18 +1,14 @@
-﻿
-namespace Catalog.Products.Features.DeleteProduct;
-public record DeleteProductCommand(Guid ProductId)
-    : ICommand<DeleteProductResult>;
+﻿namespace Catalog.Products.Features.DeleteProduct;
+
+public record DeleteProductCommand(Guid ProductId) : ICommand<DeleteProductResult>;
 
 public record DeleteProductResult(bool IsSuccess);
 
-public class DeleteProductCommandValidator
-    : AbstractValidator<DeleteProductCommand>
+public class DeleteProductCommandValidator : AbstractValidator<DeleteProductCommand>
 {
     public DeleteProductCommandValidator()
     {
-        RuleFor(x => x.ProductId)
-            .NotEmpty()
-            .WithMessage("ProductId is required");
+        RuleFor(x => x.ProductId).NotEmpty().WithMessage("ProductId is required");
     }
 }
 
@@ -21,10 +17,13 @@ internal class DeleteProductHandler(CatalogDbContext dbContext)
 {
     public async Task<DeleteProductResult> Handle(
         DeleteProductCommand command,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken
+    )
     {
-        var product = await dbContext.Products
-            .FindAsync(new object[] { command.ProductId }, cancellationToken);
+        var product = await dbContext.Products.FindAsync(
+            new object[] { command.ProductId },
+            cancellationToken
+        );
 
         if (product is null)
         {

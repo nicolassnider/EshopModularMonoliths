@@ -1,4 +1,5 @@
 ﻿namespace Catalog.Products.EventHandlers;
+
 public class ProductCreatedEventHandler(ILogger<ProductCreatedEventHandler> logger)
     : INotificationHandler<ProductCreatedEvent>
 {
