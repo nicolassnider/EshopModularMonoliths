@@ -1,4 +1,5 @@
 ﻿namespace Basket.Basket.Models;
+
 public class ShoppingCart : Aggregate<Guid>
 {
     public string UserName { get; private set; } = default!;
@@ -11,16 +12,18 @@ public class ShoppingCart : Aggregate<Guid>
     {
         ArgumentException.ThrowIfNullOrEmpty(userName);
 
-        var shoppingCart = new ShoppingCart
-        {
-            Id = id,
-            UserName = userName
-        };
+        var shoppingCart = new ShoppingCart { Id = id, UserName = userName };
 
         return shoppingCart;
     }
 
-    public void AddItem(Guid productId, int quantity, string color, decimal price, string productName)
+    public void AddItem(
+        Guid productId,
+        int quantity,
+        string color,
+        decimal price,
+        string productName
+    )
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);

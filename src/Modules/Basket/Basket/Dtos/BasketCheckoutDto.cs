@@ -1,6 +1,6 @@
 ﻿namespace Basket.Basket.Dtos;
-public record BasketCheckoutDto
-(
+
+public record BasketCheckoutDto(
     string UserName,
     Guid CustomerId,
     decimal TotalPrice,
@@ -18,4 +18,4 @@ public record BasketCheckoutDto
     string Expiration,
     string Cvv,
     int PaymentMethod
-    );
+);

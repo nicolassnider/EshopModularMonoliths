@@ -1,4 +1,5 @@
 ﻿namespace Basket.Basket.Models;
+
 public class OutboxMessage : Entity<Guid>
 {
     public string Type { get; set; } = default!;

@@ -2,25 +2,37 @@
 using Microsoft.Extensions.Logging;
 
 namespace Basket.Basket.EventHandlers;
-public class ProductPriceChangedIntegrationEventHandler
-    (
+
+public class ProductPriceChangedIntegrationEventHandler(
     ISender sender,
-    ILogger<ProductPriceChangedIntegrationEventHandler> logger)
-    : IConsumer<ProductPriceChangedIntegrationEvent>
+    ILogger<ProductPriceChangedIntegrationEventHandler> logger
+) : IConsumer<ProductPriceChangedIntegrationEvent>
 {
     public async Task Consume(ConsumeContext<ProductPriceChangedIntegrationEvent> context)
     {
-        logger.LogInformation("Integration Event handled: {IntegrationEvent}", context.Message.GetType().Name);
+        logger.LogInformation(
+            "Integration Event handled: {IntegrationEvent}",
+            context.Message.GetType().Name
+        );
 
         // mediatr new command and handler to find products on basket and update price
-        var command = new UpdateItemPriceInBasketCommand(context.Message.ProductId, context.Message.Price);
+        var command = new UpdateItemPriceInBasketCommand(
+            context.Message.ProductId,
+            context.Message.Price
+        );
         var result = await sender.Send(command);
 
         if (!result.IsSuccess)
         {
-            logger.LogError("Error updating price in basket for product id: {ProductId}", context.Message.ProductId);
+            logger.LogError(
+                "Error updating price in basket for product id: {ProductId}",
+                context.Message.ProductId
+            );
         }
 
-        logger.LogInformation("Price for product id: {ProductId} updated in basket", context.Message.ProductId);
+        logger.LogInformation(
+            "Price for product id: {ProductId} updated in basket",
+            context.Message.ProductId
+        );
     }
 }

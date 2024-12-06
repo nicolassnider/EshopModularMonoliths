@@ -31,4 +31,6 @@ global using Shared.Messaging.Events;
 global using System.Reflection;
 global using System.Security.Claims;
 global using System.Text.Json;
-
+global using Basket.Basket.Features.UpdateItemPriceInBasket;
+global using Microsoft.Extensions.Logging;
+global using System.Text.Json.Serialization;

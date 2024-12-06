@@ -1,8 +1,11 @@
 ﻿namespace Basket;
+
 public static class BasketModule
 {
-    public static IServiceCollection AddBasketModule(this IServiceCollection services,
-        IConfiguration configuration)
+    public static IServiceCollection AddBasketModule(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
     {
         // Add services to the container.
         // 1. Api Endpoint services
@@ -17,11 +20,13 @@ public static class BasketModule
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
-        services.AddDbContext<BasketDbContext>((sp, options) =>
-        {
-            options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-            options.UseNpgsql(connectionString);
-        });
+        services.AddDbContext<BasketDbContext>(
+            (sp, options) =>
+            {
+                options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
+                options.UseNpgsql(connectionString);
+            }
+        );
 
         return services;
     }
